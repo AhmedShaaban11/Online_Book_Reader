@@ -5,9 +5,31 @@
 #ifndef ONLINE_BOOK_READER_USERSMANAGER_H
 #define ONLINE_BOOK_READER_USERSMANAGER_H
 
+#include <string>
+#include <map>
+#include <set>
+
+using std::string;
+using std::map;
+using std::set;
+
+class User;
 
 class UsersManager {
-
+ private:
+  string path_;
+  map<string, User> users_;
+  set<string> emails_;
+  bool IsUserFound(const string &username) const;
+  bool IsEmailFound(const string &email) const;
+  bool IsPasswordCorrect(const string &pass, const string &username) const;
+ public:
+  explicit UsersManager(const string &path);
+  bool Update();
+  bool Save() const;
+  void Clear();
+  string AccessUser() const;
+  bool AddUser();
 };
 
 
