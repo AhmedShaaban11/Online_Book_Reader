@@ -52,7 +52,35 @@ bool App::RunSign() {
   } else {
     return false;
   }
+  return true;
 }
+
+bool App::RunAdmin() {
+  PrintAdminMenu();
+  int c = gpm::InputInt("Enter a number:", 0, (int) admin_menu_.size() - 1);
+  if (c == 0) {
+    books_.AddBook();
+  } else {
+    LogOut();
+  }
+  return true;
+}
+
+bool App::RunCustomer() {
+  PrintCustomerMenu();
+  int c = gpm::InputInt("Enter a number:", 0, (int) customer_menu_.size() - 1);
+  if (c == 0) {
+    books_.AccessBook();
+  } else if (c == 1) {
+    
+  } else if (c == 2) {
+
+  } else {
+    LogOut();
+  }
+  return true;
+}
+
 
 bool App::Run() {
   if (!usr_) {
