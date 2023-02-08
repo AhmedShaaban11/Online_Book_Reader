@@ -7,13 +7,13 @@
 
 Session::Session(const string &line, const string &del) {
   vector<string> entries = gpm::LineToWords(line, del);
-  user_id_ = std::stoi(entries[0]);
+  username_ = entries[0];
   book_title_ = entries[1];
   last_page_ = std::stoi(entries[2]);
 }
 
-Session::Session(int user_id, const string &book_title, int last_page)
-    : user_id_{user_id}, book_title_{book_title}, last_page_{last_page} {
+Session::Session(string username, const string &book_title, int last_page)
+    : username_{username}, book_title_{book_title}, last_page_{last_page} {
 
 }
 
@@ -54,8 +54,8 @@ void Session::PrvPage() {
   if (last_page_ > 0) { --last_page_; }
 }
 
-int Session::GetUserId() const {
-  return user_id_;
+string Session::GetUsername() const {
+  return username_;
 }
 
 string Session::GetBookTitle() const {
@@ -69,7 +69,7 @@ void Session::Print() const {
   cout << "Last Page: " << last_page_ << "\n";
 }
 
-string Session::ToString(const string &del) {
-  return gpm::ToString(del, std::to_string(user_id_),
-                       book_title_, std::to_string(last_page_));
+string Session::ToString(const string &del) const {
+  return gpm::ToString(del, username_, book_title_,
+                       std::to_string(last_page_));
 }
