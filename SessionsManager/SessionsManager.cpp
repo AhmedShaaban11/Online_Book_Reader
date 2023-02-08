@@ -78,3 +78,12 @@ void SessionsManager::AddSession(const string &username) {
   sessions_[username].push_back(sess);
   Save();
 }
+
+void SessionsManager::PrintHistory(const string &username) const {
+  if (sessions_.find(username) == sessions_.end()) { return; }
+  cout << "History of Sessions:\n";
+  gpm::PrintSeparator('-', 15);
+  for (auto &sess : sessions_.find(username)->second) {
+    sess.Print();
+  }
+}

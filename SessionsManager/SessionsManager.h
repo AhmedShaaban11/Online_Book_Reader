@@ -27,6 +27,7 @@ class SessionsManager {
   void Clear();
   auto AccessSession(const string &username);
   void AddSession(const string &username);
+  void PrintHistory(const string &username) const;
 };
 
 
