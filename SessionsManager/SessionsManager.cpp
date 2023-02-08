@@ -64,7 +64,7 @@ Session* SessionsManager::AccessSession(const string &username) {
   Update();
   auto end = sessions_.find(username)->second.end();
   auto it = IsSessionFound(title, username);
-  if (it == sessions_.find(username)->second.end()) {
+  if (it == end) {
     cout << "Error! Session for " << title << " not found.\n";
     return nullptr;
   }
