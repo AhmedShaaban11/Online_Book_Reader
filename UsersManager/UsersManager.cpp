@@ -62,18 +62,18 @@ bool UsersManager::IsPasswordCorrect(const string &pass,
   return pass == users_.find(username)->second.GetPassword();
 }
 
-string UsersManager::AccessUser() const {
+User* UsersManager::AccessUser() {
   string username = gpm::InputString("Enter Username:");
   string pass = gpm::InputString("Enter Password:");
   if (!IsUserFound(username)) {
     cout << "Error! User " << username << " isn't found.\n";
-    return "";
+    return nullptr;
   }
   if (!IsPasswordCorrect(pass, username)) {
     cout << "Error! Password isn't correct.\n";
-    return "";
+    return nullptr;
   }
-  return username;
+  return &users_.find(username)->second;
 }
 
 bool UsersManager::AddUser() {

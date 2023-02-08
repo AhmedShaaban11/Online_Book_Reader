@@ -28,7 +28,7 @@ class UsersManager {
   bool Update();
   bool Save() const;
   void Clear();
-  string AccessUser() const;
+  User* AccessUser();
   bool AddUser();
 };
 
