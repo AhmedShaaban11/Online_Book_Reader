@@ -41,16 +41,40 @@ bool SessionsManager::Save() const {
       fout << sess.ToString() << "\n";
     }
   }
-  fout.close():
+  fout.close();
   return true;
 }
 
-bool SessionsManager::IsSessionFound(const string &title, const string &username) const {
+void SessionsManager::Clear() {
+  sessions_.clear();
+}
+
+auto SessionsManager::IsSessionFound(const string &title, const string &username) {
   auto begin = sessions_.find(username)->second.begin();
   auto end = sessions_.find(username)->second.end();
   auto it = begin;
   for (; it != end; ++it) {
-    if (it->GetBookTitle() == title) { return true; }
+    if (it->GetBookTitle() == title) { return it; }
   }
-  return false;
+  return end;
+}
+
+auto SessionsManager::AccessSession(const string &username) {
+  string title = gpm::InputString("Enter the book title:");
+  Update();
+  auto end = sessions_.find(username)->second.end();
+  auto it = IsSessionFound(title, username);
+  if (it == sessions_.find(username)->second.end()) {
+    cout << "Error! Session for " << title << " not found.\n";
+    return end;
+  }
+  return it;
+}
+
+void SessionsManager::AddSession(const string &username) {
+  string title = gpm::InputString("Enter the book title:");
+  Update();
+  Session sess(username, title, 0);
+  sessions_[username].push_back(sess);
+  Save();
 }
