@@ -20,13 +20,13 @@ class SessionsManager {
   string path_;
   map<string, vector<Session>> sessions_;
   auto IsSessionFound(const string &title, const string &username);
+  void AddSession(const string &title, const string &username);
  public:
   explicit SessionsManager(const string &path);
   bool Update();
   bool Save() const;
   void Clear();
-  Session* AccessSession(const string &username);
-  void AddSession(const string &username);
+  Session* AccessSession(const string &title, const string &username);
   void PrintHistory(const string &username) const;
 };
 

@@ -59,20 +59,18 @@ auto SessionsManager::IsSessionFound(const string &title, const string &username
   return end;
 }
 
-Session* SessionsManager::AccessSession(const string &username) {
-  string title = gpm::InputString("Enter the book title:");
+Session* SessionsManager::AccessSession(const string &title, const string &username) {
   Update();
   auto end = sessions_.find(username)->second.end();
   auto it = IsSessionFound(title, username);
   if (it == end) {
-    cout << "Error! Session for " << title << " not found.\n";
-    return nullptr;
+    AddSession(username, title);
+    return &sessions_.find(username)->second.back();
   }
   return &*it;
 }
 
-void SessionsManager::AddSession(const string &username) {
-  string title = gpm::InputString("Enter the book title:");
+void SessionsManager::AddSession(const string &title, const string &username) {
   Update();
   Session sess(username, title, 0);
   sessions_[username].push_back(sess);
