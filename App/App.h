@@ -18,7 +18,7 @@ using std::vector;
 class App {
  private:
   User *usr_;
-  vector<Session>::iterator sess_;
+  Session* sess_;
   UsersManager users_;
   BooksManager books_;
   SessionsManager sessions_;

@@ -25,7 +25,7 @@ class SessionsManager {
   bool Update();
   bool Save() const;
   void Clear();
-  auto AccessSession(const string &username);
+  Session* AccessSession(const string &username);
   void AddSession(const string &username);
   void PrintHistory(const string &username) const;
 };
