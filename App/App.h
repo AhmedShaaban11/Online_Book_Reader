@@ -17,17 +17,23 @@ using std::vector;
 
 class App {
  private:
-  string usr_;
-  Session sess_;
+  User *usr_;
+  vector<Session>::iterator sess_;
   UsersManager users_;
   BooksManager books_;
   SessionsManager sessions_;
   vector<string> sign_menu_;
-  vector<string> features_menu_;
+  vector<string> admin_menu_;
+  vector<string> customer_menu_;
   void PrintSignMenu() const;
-  void PrintFeaturesMenu() const;
+  void PrintAdminMenu() const;
+  void PrintCustomerMenu() const;
+  bool RunSign();
+  bool RunAdmin();
+  bool RunCustomer();
  public:
-  App(const string &users_path, const string &books_path, const string &sessions_path)
+  App(const string &users_path, const string &books_path,
+      const string &books_dir, const string &sessions_path);
   bool Run();
 };
 
