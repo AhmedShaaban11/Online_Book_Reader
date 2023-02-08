@@ -12,8 +12,9 @@ using std::ifstream;
 using std::ofstream;
 using std::stringstream;
 
-BooksManager::BooksManager(const string &path) : path_{gpm::CorrectPath(path)} {
-
+BooksManager::BooksManager(const string &path, const string &books_path)
+    : path_{gpm::CorrectPath(path)}, books_path_{books_path} {
+  Update();
 }
 
 bool BooksManager::Update() {
@@ -71,10 +72,14 @@ bool BooksManager::AddBook() {
     return false;
   }
   // Copying the file into dst
-  string dst_path = path_;
+  string dst_path = books_path_;
   if (dst_path.back() != '/') { dst_path += "/"; }
   dst_path += title += ".txt";
-  ofstream fout(dst_path);
+  ofstream fout(dst_path, std::ios::out);
+  if (fout.fail()) {
+    cout << "Error! Cannot open " << dst_path << " file.\n";
+    return false;
+  }
   fout << fin.rdbuf();
   fin.close();
   fout.close();

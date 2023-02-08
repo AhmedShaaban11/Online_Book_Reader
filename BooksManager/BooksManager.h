@@ -16,10 +16,11 @@ class Book;
 class BooksManager {
  private:
   string path_;
+  string books_path_;
   map<string, Book> books_;
   bool IsBookFound(const string &title) const;
  public:
-  explicit BooksManager(const string &path);
+  BooksManager(const string &path, const string &books_path);
   bool Update();
   bool Save() const;
   void Clear();
