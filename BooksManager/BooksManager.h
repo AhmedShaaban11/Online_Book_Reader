@@ -26,6 +26,7 @@ class BooksManager {
   void Clear();
   string AccessBook() const;
   bool AddBook();
+  void PrintBooks() const;
 };
 
 

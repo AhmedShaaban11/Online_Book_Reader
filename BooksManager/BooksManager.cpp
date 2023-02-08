@@ -90,3 +90,11 @@ bool BooksManager::AddBook() {
   Save();
   return true;
 }
+
+void BooksManager::PrintBooks() const {
+  cout << "List of Books:\n";
+  gpm::PrintSeparator('-', 15);
+  for (auto &p : books_) {
+    cout << p.first << "\n";
+  }
+}
