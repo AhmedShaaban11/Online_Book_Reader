@@ -19,7 +19,7 @@ class App {
  private:
   string books_dir_;
   User *usr_;
-  Session* sess_;
+  Session *sess_;
   UsersManager users_;
   BooksManager books_;
   SessionsManager sessions_;

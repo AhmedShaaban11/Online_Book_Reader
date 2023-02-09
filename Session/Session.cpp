@@ -27,7 +27,7 @@ bool Session::Open(const string &path) {
     return false;
   }
   string line;
-  while (getline(cin, line)) { lines_.push_back(line); }
+  while (getline(fin, line)) { lines_.push_back(line); }
   fin.close();
   return true;
 }
@@ -37,8 +37,9 @@ void Session::Close() {
 }
 
 void Session::Show() const {
-  int cur_line = 30 * last_page_;
-  for (int i = cur_line; i < cur_line + 30; ++i) {
+  int lines = 15;
+  int cur_line = lines * last_page_;
+  for (int i = cur_line; i < cur_line + lines; ++i) {
     if (i >= (int) lines_.size()) { return; }
     cout << lines_[i] << "\n";
   }
