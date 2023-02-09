@@ -18,6 +18,9 @@ string gpm::CorrectPath(const string &path) {
   fin.open(res);
   is_opened = !fin.fail();
   fin.close();
+  if (path.substr((int) path.size() - 4) == ".run") {
+    res.erase((int) path.size() - 4, 4);
+  }
   return is_opened ? res : "";
 }
 
