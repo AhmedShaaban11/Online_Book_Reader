@@ -49,25 +49,23 @@ void SessionsManager::Clear() {
   sessions_.clear();
 }
 
-auto SessionsManager::IsSessionFound(const string &title, const string &username) {
-  auto begin = sessions_.find(username)->second.begin();
-  auto end = sessions_.find(username)->second.end();
-  auto it = begin;
-  for (; it != end; ++it) {
-    if (it->GetBookTitle() == title) { return it; }
+int SessionsManager::IsSessionFound(const string &title, const string &username) {
+  vector<Session> &sessions = sessions_.find(username)->second;
+  for (int i = 0; i < (int) sessions.size(); ++i) {
+    if (sessions[i].GetBookTitle() == title) { return i; }
   }
-  return end;
+  return -1;
 }
 
 Session* SessionsManager::AccessSession(const string &title, const string &username) {
   Update();
-  auto end = sessions_.find(username)->second.end();
-  auto it = IsSessionFound(title, username);
-  if (it == end) {
-    AddSession(username, title);
-    return &sessions_.find(username)->second.back();
+  vector<Session> &sessions = sessions_.find(username)->second;
+  int idx = IsSessionFound(title, username);
+  if (idx == -1) {
+    AddSession(title, username);
+    return &sessions.back();
   }
-  return &*it;
+  return &sessions[idx];
 }
 
 void SessionsManager::AddSession(const string &title, const string &username) {
