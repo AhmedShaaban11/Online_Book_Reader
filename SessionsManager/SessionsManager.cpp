@@ -24,7 +24,7 @@ bool SessionsManager::Update() {
   string line;
   while (getline(fin, line)) {
     Session sess(line);
-    sessions_["j"].push_back(sess);
+    sessions_[sess.GetUsername()].push_back(sess);
   }
   fin.close();
   return true;
@@ -49,9 +49,9 @@ void SessionsManager::Clear() {
   sessions_.clear();
 }
 
-int SessionsManager::IsSessionFound(const string &title, const string &username) {
+int SessionsManager::IsSessionFound(const string &title, const string &username) const {
   if (sessions_.find(username) == sessions_.end()) { return -1; }
-  vector<Session> &sessions = sessions_.find(username)->second;
+  const vector<Session> &sessions = sessions_.find(username)->second;
   for (int i = 0; i < (int) sessions.size(); ++i) {
     if (sessions[i].GetBookTitle() == title) { return i; }
   }
@@ -81,5 +81,6 @@ void SessionsManager::PrintHistory(const string &username) const {
   gpm::PrintSeparator('-', 15);
   for (auto &sess : sessions_.find(username)->second) {
     sess.Print();
+    gpm::PrintSeparator('-', 20);
   }
 }

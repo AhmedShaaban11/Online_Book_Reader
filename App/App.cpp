@@ -118,6 +118,7 @@ bool App::RunSession() {
   } else {
     sess_->Close();
     sess_ = nullptr;
+    sessions_.Save();
   }
   return true;
 }

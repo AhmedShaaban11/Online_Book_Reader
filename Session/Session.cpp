@@ -5,7 +5,7 @@
 #include "Session.h"
 #include "../Namespaces/gpm.h"
 
-Session::Session(const string &line, const string &del) {
+Session::Session(const string &line, const string &del) : lines_in_page_{15} {
   vector<string> entries = gpm::LineToWords(line, del);
   username_ = entries[0];
   book_title_ = entries[1];

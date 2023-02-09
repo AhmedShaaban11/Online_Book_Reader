@@ -19,7 +19,7 @@ class SessionsManager {
  private:
   string path_;
   map<string, vector<Session>> sessions_;
-  int IsSessionFound(const string &title, const string &username);
+  int IsSessionFound(const string &title, const string &username) const;
   void AddSession(const string &title, const string &username);
  public:
   explicit SessionsManager(const string &path);
