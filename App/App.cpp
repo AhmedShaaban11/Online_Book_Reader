@@ -28,8 +28,9 @@ App::App(const string &users_path, const string &books_path,
   customer_menu_.emplace_back("List of Books");
   customer_menu_.emplace_back("LogOut");
   session_menu_.emplace_back("Print Current Page");
-  session_menu_.emplace_back("Go To The Next Page");
-  session_menu_.emplace_back("Go To The Previous Page");
+  session_menu_.emplace_back("Next Page");
+  session_menu_.emplace_back("Previous Page");
+  session_menu_.emplace_back("Jump to Page");
   session_menu_.emplace_back("End");
 }
 
@@ -59,7 +60,12 @@ void App::PrintSessionMenu() const {
 
 void App::LogOut() {
   usr_ = nullptr;
+}
+
+void App::EndSession() {
+  sess_->Close();
   sess_ = nullptr;
+  sessions_.Save();
 }
 
 bool App::RunSign() {
@@ -121,10 +127,10 @@ bool App::RunSession() {
     sess_->NxtPage();
   } else if (c == 2) {
     sess_->PrvPage();
+  } else if (c == 3) {
+    sess_->JumpToPage();
   } else {
-    sess_->Close();
-    sess_ = nullptr;
-    sessions_.Save();
+    EndSession();
   }
   return true;
 }

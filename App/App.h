@@ -36,6 +36,7 @@ class App {
   bool RunCustomer();
   bool RunSession();
   void LogOut();
+  void EndSession();
  public:
   App(const string &users_path, const string &books_path,
       const string &books_dir, const string &sessions_path);

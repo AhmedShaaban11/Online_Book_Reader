@@ -27,6 +27,7 @@ class Session {
   void Show() const;
   void NxtPage();
   void PrvPage();
+  void JumpToPage();
   string GetUsername() const;
   string GetBookTitle() const;
   void Print() const;

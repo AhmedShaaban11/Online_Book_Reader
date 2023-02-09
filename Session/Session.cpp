@@ -52,6 +52,12 @@ void Session::PrvPage() {
   if (last_page_ > 0) { --last_page_; }
 }
 
+void Session::JumpToPage() {
+  int pages = (int) lines_.size() / lines_in_page_;
+  int c = gpm::InputInt("Enter the page number:", 0, pages);
+  last_page_ = c;
+}
+
 string Session::GetUsername() const {
   return username_;
 }
