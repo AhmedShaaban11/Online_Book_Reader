@@ -17,10 +17,11 @@ class Session {
   string username_;
   string book_title_;
   int last_page_;
+  int lines_in_page_;
   vector<string> lines_;
  public:
   explicit Session(const string &line, const string &del = ",");
-  Session(string username, const string &book_title, int last_page);
+  Session(string username, const string &book_title, int last_page = 0);
   bool Open(const string &path);
   void Close();
   void Show() const;

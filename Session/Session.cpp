@@ -13,7 +13,8 @@ Session::Session(const string &line, const string &del) {
 }
 
 Session::Session(string username, const string &book_title, int last_page)
-    : username_{username}, book_title_{book_title}, last_page_{last_page} {
+    : username_{username}, book_title_{book_title}, last_page_{last_page},
+    lines_in_page_{15} {
 
 }
 
@@ -37,16 +38,15 @@ void Session::Close() {
 }
 
 void Session::Show() const {
-  int lines = 15;
-  int cur_line = lines * last_page_;
-  for (int i = cur_line; i < cur_line + lines; ++i) {
+  int cur_line = lines_in_page_ * last_page_;
+  for (int i = cur_line; i < cur_line + lines_in_page_; ++i) {
     if (i >= (int) lines_.size()) { return; }
     cout << lines_[i] << "\n";
   }
 }
 
 void Session::NxtPage() {
-  if ((last_page_ + 1) * 30 < (int) lines_.size()) {
+  if ((last_page_ + 1) * lines_in_page_ < (int) lines_.size()) {
     ++last_page_;
   }
 }
