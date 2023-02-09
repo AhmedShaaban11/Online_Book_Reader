@@ -4,7 +4,7 @@
 
 const char KUsersPath[] = "UsersManager/users_data.csv";
 const char KBooksPath[] = "BooksManager/books_data.csv";
-const char KBooksDir[] = "../BooksManager/Books/";
+const char KBooksDir[] = "BooksManager/books/.run";
 const char KSessionsPath[] = "SessionsManager/sessions_data.csv";
 
 int main() {

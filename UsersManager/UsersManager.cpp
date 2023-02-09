@@ -10,7 +10,7 @@
 using std::ifstream;
 using std::ofstream;
 
-UsersManager::UsersManager(const string &path) : path_{gpm::CorrectPath(path)} {
+UsersManager::UsersManager(const string &path) : path_{path} {
   Update();
 }
 

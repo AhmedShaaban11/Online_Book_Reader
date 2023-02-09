@@ -11,9 +11,11 @@ using std::cout;
 
 App::App(const string &users_path, const string &books_path,
          const string &books_dir, const string &sessions_path)
-         : books_dir_{books_dir}, usr_{nullptr}, sess_{nullptr},
-         users_{users_path}, books_{books_path, books_dir},
-         sessions_{sessions_path} {
+         : usr_{nullptr}, sess_{nullptr},
+         books_dir_{gpm::CorrectPath(books_dir)},
+         users_{gpm::CorrectPath(users_path)},
+         books_{gpm::CorrectPath(books_path), gpm::CorrectPath(books_dir)},
+         sessions_{gpm::CorrectPath(sessions_path)} {
   sign_menu_.emplace_back("SignUp");
   sign_menu_.emplace_back("LogIn");
   sign_menu_.emplace_back("Exit");
@@ -92,7 +94,7 @@ bool App::RunCustomer() {
     string title = books_.AccessBook();
     if (title.empty()) { return true; }
     sess_ = sessions_.AccessSession(title, usr_->GetUsername());
-    sess_->Open(books_dir_);
+    sess_->Open(books_dir_ + title);
   } else if (c == 1) {
     sessions_.PrintHistory(usr_->GetUsername());
   } else if (c == 2) {

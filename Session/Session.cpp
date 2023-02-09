@@ -19,10 +19,7 @@ Session::Session(string username, const string &book_title, int last_page)
 }
 
 bool Session::Open(const string &path) {
-  string full_path = path;
-  if (path.back() != '/') { full_path += '/'; }
-  full_path += book_title_ += ".txt";
-  ifstream fin(full_path);
+  ifstream fin(path);
   if (fin.fail()) {
     cout << "Error! Cannot open " << book_title_ << " file.\n";
     return false;

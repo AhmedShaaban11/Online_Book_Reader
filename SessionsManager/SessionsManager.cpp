@@ -10,7 +10,7 @@
 using std::ifstream;
 using std::ofstream;
 
-SessionsManager::SessionsManager(const string &path) : path_{gpm::CorrectPath(path)} {
+SessionsManager::SessionsManager(const string &path) : path_{path} {
   Update();
 }
 
