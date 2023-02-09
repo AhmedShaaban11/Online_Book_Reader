@@ -8,12 +8,11 @@
 #include <string>
 #include <map>
 #include <set>
+#include "../User/User.h"
 
 using std::string;
 using std::map;
 using std::set;
-
-class User;
 
 class UsersManager {
  private:
