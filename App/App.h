@@ -17,9 +17,9 @@ using std::vector;
 
 class App {
  private:
-  string books_dir_;
   User *usr_;
   Session *sess_;
+  string books_dir_;
   UsersManager users_;
   BooksManager books_;
   SessionsManager sessions_;

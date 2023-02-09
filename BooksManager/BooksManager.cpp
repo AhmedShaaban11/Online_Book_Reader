@@ -13,7 +13,7 @@ using std::ofstream;
 using std::stringstream;
 
 BooksManager::BooksManager(const string &path, const string &books_path)
-    : path_{gpm::CorrectPath(path)}, books_path_{books_path} {
+    : path_{path}, books_path_{books_path} {
   Update();
 }
 
@@ -64,20 +64,20 @@ string BooksManager::AccessBook() const {
 }
 
 bool BooksManager::AddBook() {
-  string title = gpm::InputString("Enter the title:");
   string src_path = gpm::InputString("Enter the full path of the book:");
   ifstream fin(src_path);
   if (fin.fail()) {
     cout << "Error! Cannot open " << path_ << " file.\n";
     return false;
   }
+  // Getting the title
+  auto slash = src_path.find_last_of('/');
+  auto backslash = src_path.find_last_of('\\');
+  string title = src_path.substr(std::min(slash, backslash) + 1);
   // Copying the file into dst
-  string dst_path = books_path_;
-  if (dst_path.back() != '/') { dst_path += "/"; }
-  dst_path += title += ".txt";
-  ofstream fout(dst_path, std::ios::out);
+  ofstream fout(books_path_ + title, std::ios::out);
   if (fout.fail()) {
-    cout << "Error! Cannot open " << dst_path << " file.\n";
+    cout << "Error! Cannot open " << books_path_ + title << " file.\n";
     return false;
   }
   fout << fin.rdbuf();
