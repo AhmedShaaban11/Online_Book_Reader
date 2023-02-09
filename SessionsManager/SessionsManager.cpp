@@ -54,7 +54,9 @@ auto SessionsManager::IsSessionFound(const string &title, const string &username
   auto end = sessions_.find(username)->second.end();
   auto it = begin;
   for (; it != end; ++it) {
-    if (it->GetBookTitle() == title) { return it; }
+    if (it->GetBookTitle() == title) {
+      return it;
+    }
   }
   return end;
 }
@@ -64,7 +66,7 @@ Session* SessionsManager::AccessSession(const string &title, const string &usern
   auto end = sessions_.find(username)->second.end();
   auto it = IsSessionFound(title, username);
   if (it == end) {
-    AddSession(username, title);
+    AddSession(title, username);
     return &sessions_.find(username)->second.back();
   }
   return &*it;

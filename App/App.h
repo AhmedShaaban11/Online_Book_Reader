@@ -17,6 +17,7 @@ using std::vector;
 
 class App {
  private:
+  string books_dir_;
   User *usr_;
   Session* sess_;
   UsersManager users_;
@@ -25,12 +26,15 @@ class App {
   vector<string> sign_menu_;
   vector<string> admin_menu_;
   vector<string> customer_menu_;
+  vector<string> session_menu_;
   void PrintSignMenu() const;
   void PrintAdminMenu() const;
   void PrintCustomerMenu() const;
+  void PrintSessionMenu() const;
   bool RunSign();
   bool RunAdmin();
   bool RunCustomer();
+  bool RunSession();
   void LogOut();
  public:
   App(const string &users_path, const string &books_path,
