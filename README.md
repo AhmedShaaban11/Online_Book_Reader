@@ -5,53 +5,53 @@
 Online_Book_Reader is an app simulates reader apps. There is 2 type of users:
 Admin, and Customer. For the Admin, s/he is capable of adding books to the system. 
 For the Customer, s/he can read the book in the system, and save his/her last 
-reading sessions to complete at another time.
+reading sessions to complete at another time. Project uses csv files to save the data.
 
 ## Classes
 
-    - User
+  - User
 
-    - Book
+  - Book
 
-    - Session
+  - Session
 
-    - UsersManager
+  - UsersManager
 
-    - BooksManager
+  - BooksManager
 
-    - SessionsManager
+  - SessionsManager
 
-    - App
+  - App
 
 ## Namespaces
 
-    - gpm
+  - gpm
 
-    - std
+  - std
 
 ## Admin Features
 
-    - Add Books
+  - Add Books
     
-    - View Profile
+  - View Profile
 
 ## Customer Features
 
-    - Read Books
+  - Read Books
 
-        - Show the next page
+    - Show the next page
         
-        - Show the previous page
+    - Show the previous page
         
-        - Jump to a specific page
+    - Jump to a specific page
         
-        - Save the current page at the end of the session for next sessions
+    - Save the current page at the end of the session for next sessions
 
-    - View the history of sessions
+  - View the history of sessions
 
-    - View Books at the System
+  - View Books at the System
 
-    - View Profile
+  - View Profile
 
 ## Sign Menu
 
